@@ -1,17 +1,16 @@
 import React, { useState } from 'react'
 import useFetch from '../Hooks/useFetch';
 import styled from "styled-components";
-import { SearchOutlined } from '@ant-design/icons';
-import InputCom from './InputCom';
+import { CloseCircleOutlined, SearchOutlined } from '@ant-design/icons';
+import SearchBox from './SearchBox';
 
 function CurrentWeather() {
 
-  const [city,setCity] = useState("london")
+  const [city,setCity] = useState("karachi")
   const {cityName,celsius,fahrenheit} = useFetch(city)
   const [searching, setSearching] = useState(false)
 
   const handleSearch = () => {
-    console.log('Search')
     if (searching) {
       setSearching(false)
     } else {
@@ -19,6 +18,9 @@ function CurrentWeather() {
     }
   }
 
+  const onSearch = value => {
+    setCity(value)
+  }
 
   if(!city) return null
   
@@ -26,19 +28,23 @@ function CurrentWeather() {
   return (
     <Container>
       <div style={{
+        position: 'relative',
+        left:'15px',
         display:"flex", 
         alignItems:'center',
         }}>
         {
-          searching ? <InputCom handleSearch /> : <h1 style={{marginRight:"10px"}}>{cityName}</h1>
+          searching ? <SearchBox onSearch={onSearch} /> : <h1 style={{marginRight:"10px"}}>{cityName}</h1>
         }
         
+        {
+          searching ? <CloseCircleOutlined onClick={handleSearch}/> : <SearchOutlined onClick={handleSearch} />
+        }
         
-        <SearchOutlined onClick={handleSearch} />
       </div>
       <img src="" alt="SVG" />
-      <p>{celsius}</p>
-      <p>{fahrenheit}</p>
+      <p>{celsius}<span>&#176;</span>C</p>
+      <p>{fahrenheit}<span>&#176;</span>F</p>
       <p>Condition</p>
     </Container>
   )
