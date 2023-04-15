@@ -1,24 +1,55 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import useFetch from '../Hooks/useFetch';
 import styled from "styled-components";
+import { SearchOutlined } from '@ant-design/icons';
+import InputCom from './InputCom';
 
 function CurrentWeather() {
-  const [city,setCity] = useState("islamabad")
 
-  console.log(useFetch(city))
+  const [city,setCity] = useState("london")
+  const {cityName,celsius,fahrenheit} = useFetch(city)
+  const [searching, setSearching] = useState(false)
+
+  const handleSearch = () => {
+    console.log('Search')
+    if (searching) {
+      setSearching(false)
+    } else {
+      setSearching(true)
+    }
+  }
+
+
+  if(!city) return null
+  
 
   return (
     <Container>
-      <h1>{city}</h1>
+      <div style={{
+        display:"flex", 
+        alignItems:'center',
+        }}>
+        {
+          searching ? <InputCom handleSearch /> : <h1 style={{marginRight:"10px"}}>{cityName}</h1>
+        }
+        
+        
+        <SearchOutlined onClick={handleSearch} />
+      </div>
       <img src="" alt="SVG" />
-      <p>Degree in Celcius</p>
-      <p>Degree in Farenheit</p>
+      <p>{celsius}</p>
+      <p>{fahrenheit}</p>
       <p>Condition</p>
     </Container>
   )
 }
 
-const Container = styled.div``
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`
 export default CurrentWeather
 
 // API

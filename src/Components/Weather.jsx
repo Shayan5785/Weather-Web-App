@@ -5,15 +5,15 @@ import CurrentWeather from "./CurrentWeather"
 
 function Weather() {
   return (
-    <Container>
+    <WeatherContainer >
         <CurrentWeather/>
         <FutureWeather/>
-    </Container>
+    </WeatherContainer>
     
   )
 }
 
-const Container = styled.div`
+const WeatherContainer  = styled.div`
     display:flex;
     flex-direction:column;
     align-items:center;
