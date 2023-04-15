@@ -2,7 +2,6 @@ import { Input,  } from 'antd';
 const { Search } = Input;
 
 const SearchBox = ({onSearch}) => {
-    // const onSearch = (value) => console.log(value);
 
     return(
     <Search 
@@ -13,7 +12,8 @@ const SearchBox = ({onSearch}) => {
         marginRight:"10px"
      }}
      onSearch={onSearch}
-     enterButton 
+     onPressEnter={false} 
+     enterButton
     />
 );}
 export default SearchBox;
