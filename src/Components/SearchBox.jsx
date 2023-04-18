@@ -9,7 +9,7 @@ const SearchBox = ({onSearch}) => {
      size='small'
      style={{
         width: 200,
-        marginRight:"10px"
+        marginRight:"10px",
      }}
      onSearch={onSearch}
      onPressEnter={false} 

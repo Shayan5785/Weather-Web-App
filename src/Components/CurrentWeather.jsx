@@ -2,13 +2,22 @@ import React, { useState } from 'react'
 import useFetch from '../Hooks/useFetch';
 import styled from "styled-components";
 import CitySearchBar from './CitySearchBar';
+import Error from './Error';
 
 function CurrentWeather() {
 
   const [city,setCity] = useState("karachi")
-  const {cityName,celsius,fahrenheit,description,icon} = useFetch(city)
+  const {
+    cityName,
+    celsius,
+    fahrenheit,
+    description,
+    icon,
+    err
+  } = useFetch(city)
   const [searching, setSearching] = useState(false)
 
+  // toggles the searching state
   const handleSearch = () => {
     if (searching) {
       setSearching(false)
@@ -16,17 +25,15 @@ function CurrentWeather() {
       setSearching(true)
     }
   }
-
+// sets the city state to the value passed as a parameter
   const onSearch = value => {
     setCity(value)
     setSearching(false)
   }
 
-  if(!city) return null
-  
-
   return (
     <Container>
+      <Error err={err} />
       <CitySearchBar 
        city={cityName} 
        searching={searching} 

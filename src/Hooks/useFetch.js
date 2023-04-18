@@ -6,6 +6,7 @@ const useFetch = (city) => {
   const [fahrenheit , setFahrenheit ] = useState()
   const [description , setDescription ] = useState()
   const [icon , setIcon ] = useState()
+  const [err , setErr ] = useState(null)
 
     useEffect(() => {
         const key = 'bc13bd55fbd3c30a057d37271857570a'
@@ -27,15 +28,16 @@ const useFetch = (city) => {
             setFahrenheit( Math.round((weatherData.main.feels_like - 273.15) * 1.8 + 32))
             setDescription( weatherData.weather[0].description)
             setIcon(iconRes.url)
+            setErr(null);
           } catch (err) {
-            console.log("Invalid location" + err)
+            setErr("Invalid location")
           }
         }
 
         fetchData()
         }, [city])
 
-  return {cityName,celsius,fahrenheit,description,icon}
+  return {cityName,celsius,fahrenheit,description,icon,err}
 }
 
 export default useFetch
