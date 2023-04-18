@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import bg from "./Assets/bg.jpg"
-import Weather from "./Components/Weather";
+import Weather from "./Components/Weather/Weather";
 
 function App() {
   return (

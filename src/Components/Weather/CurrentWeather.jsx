@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import useFetch from '../Hooks/useFetch';
+import useFetch from '../../Hooks/useFetch';
 import styled from "styled-components";
-import CitySearchBar from './CitySearchBar';
-import Error from './Error';
+import CitySearchBar from '../Common/CitySearchBar';
+import Error from '../Error/Error';
 
 function CurrentWeather() {
 

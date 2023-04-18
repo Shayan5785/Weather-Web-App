@@ -13,6 +13,14 @@ function Weather() {
   )
 }
 
+  // Weather
+  // CurrentWeather
+  // FutureWeather
+  // Error
+  // CitySearchBar
+  // SearchBox
+
+
 const WeatherContainer  = styled.div`
     display:flex;
     flex-direction:column;
