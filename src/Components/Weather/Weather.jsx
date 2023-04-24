@@ -1,14 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from "styled-components";
 import FutureWeather from "./FutureWeather"
 import CurrentWeather from "./CurrentWeather"
+import CityContext from '../../Context/CityContext';
 
 function Weather() {
+  const [city,setCity] = useState("islamabad")
+  
+
   return (
+    <CityContext.Provider value={[city,setCity]}>
     <WeatherContainer >
-        <CurrentWeather/>
-        <FutureWeather/>
+      <CurrentWeather/>
+      <FutureWeather/>
     </WeatherContainer>
+    </CityContext.Provider>
     
   )
 }

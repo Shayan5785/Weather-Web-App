@@ -3,10 +3,11 @@ import useFetch from '../../Hooks/useFetch';
 import styled from "styled-components";
 import CitySearchBar from '../Common/CitySearchBar';
 import Error from '../Error/Error';
+import { useContext } from 'react';
+import CityContext from '../../Context/CityContext'
 
 function CurrentWeather() {
-
-  const [city,setCity] = useState("karachi")
+  const [city,setCity] = useContext(CityContext)
   const {
     cityName,
     celsius,
