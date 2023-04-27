@@ -24,7 +24,7 @@ const useFetch = (city) => {
             // fetching Future Forecast
             const wetRes = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${val.lat}&lon=${val.lon}&appid=bc13bd55fbd3c30a057d37271857570a`);
             const wetData = await wetRes.json();
-            const y = wetData.list.filter(element => (/00:00:00/.test(element.dt_txt)));
+            const y = wetData.list.filter(element => (/12:00:00/.test(element.dt_txt)));
             
             setFutureDays(y.map(item => {
               const date = new Date(item.dt_txt);
@@ -43,10 +43,11 @@ const useFetch = (city) => {
             // search for the city within the returned data
             const weatherRes = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${val.lat}&lon=${val.lon}&appid=${key}`)
             const weatherData = await weatherRes.json()
+            // console.log(weatherData, val.lat)
             // api to get weather icon
             let weatherIcon = weatherData.weather[0].icon
             const iconRes = await fetch(`https://openweathermap.org/img/wn/${weatherIcon}@2x.png`)
-            setCityName(weatherData.name)
+            setCityName(val.name)
             setCelsius(Math.round(weatherData.main.feels_like - 273.15))
             setFahrenheit( Math.round((weatherData.main.feels_like - 273.15) * 1.8 + 32))
             setDescription( weatherData.weather[0].description)

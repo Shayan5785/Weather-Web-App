@@ -7,6 +7,7 @@ import { useContext } from 'react';
 import CityContext from '../../Context/CityContext'
 
 function CurrentWeather() {
+  console.log("cw")
   const [city,setCity] = useContext(CityContext)
   const {
     cityName,
